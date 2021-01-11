@@ -1,0 +1,3 @@
+include ':libutil'
+include ':app'
+rootProject.name = "magic camerax"

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.robin.camerax.viewmodel.BaseCameraViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/camera_ui_container"
+        android:layoutDirection="ltr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.robin.camerax.component.CameraXPreviewView
+            android:id="@+id/view_finder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include layout="@layout/layout_funtion_top"
+            android:id="@+id/funtionTop"
+            app:viewModel="@{viewModel}" />
+
+        <include layout="@layout/layout_funtion_middle"
+            android:id="@+id/funtionMiddle"
+            app:viewModel="@{viewModel}" />
+
+        <!-- Camera control and gallery buttons -->
+        <ImageButton
+            android:id="@+id/camera_switch_button"
+            android:layout_width="@dimen/round_button_medium"
+            android:layout_height="@dimen/round_button_medium"
+            android:layout_marginBottom="@dimen/margin_xlarge"
+            android:layout_marginStart="@dimen/margin_small"
+            android:padding="@dimen/spacing_small"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_switch"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/switch_camera_button_alt"
+            android:onClick="@{viewModel::onCamerSwitchClick}"/>
+
+        <ImageButton
+            android:id="@+id/camera_capture_button"
+            android:layout_width="@dimen/round_button_large"
+            android:layout_height="@dimen/round_button_large"
+            android:layout_marginBottom="@dimen/shutter_button_margin"
+            android:scaleType="fitCenter"
+            android:background="@drawable/ic_shutter"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/capture_button_alt"
+            android:onClick="@{viewModel::onCamerCaptureClick}"/>
+
+        <ImageButton
+            android:id="@+id/photo_view_button"
+            android:layout_width="@dimen/round_button_medium"
+            android:layout_height="@dimen/round_button_medium"
+            android:layout_marginBottom="@dimen/margin_xlarge"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:padding="@dimen/spacing_small"
+            android:scaleType="fitCenter"
+            android:background="@drawable/ic_outer_circle"
+            app:srcCompat="@drawable/ic_photo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/gallery_button_alt"
+            android:onClick="@{viewModel::onPhotoViewClick}"/>
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/camera_capture_button"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

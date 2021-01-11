@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.robin.camerax.viewmodel.BaseCameraViewModel" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/gridVertical1"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:alpha="0.5"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/gridVertical2"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:alpha="0.5"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.66"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/gridHorizontal1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:alpha="0.5"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.33" />
+
+        <View
+            android:id="@+id/gridHorizontal2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:alpha="0.5"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.66" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupGridLines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.hasGrid ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="gridVertical1,gridVertical2,gridHorizontal1,gridHorizontal2" />
+
+
+        <TextView
+            android:id="@+id/textCountDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/count_down_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0"
+            android:visibility="gone"/>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone">
+            <com.robin.camerax.component.FocusImageView
+                android:id="@+id/focusView"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:focus_fail_id="@drawable/focus_focus_failed"
+                app:focus_focusing_id="@drawable/focus_focusing"
+                app:focus_success_id="@drawable/focus_focused"
+                />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
